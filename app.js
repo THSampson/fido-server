@@ -10,6 +10,8 @@ let fido = require('./controllers/fidocontroller')
 sequelize.sync();
 app.use(require('./middleware/headers'))
 app.use(express.json())
+
+
 app.use('/user', user);
 app.use('/pet', pet)
 app.use('/fido', fido)
