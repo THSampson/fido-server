@@ -8,4 +8,17 @@ sequelize.authenticate()
 .then(() => console.log("postgres db is connected"))
 .catch(err => console.log(err));
 
+User = sequelize.import('./models/user');
+Pet = sequelize.import('./models/petprofile');
+Fido = sequelize.import('./models/fido');
+
+Pet.belongsTo(User);
+User.hasMany(Pet);
+Fido.belongsTo(User);
+User.hasOne(Fido);
+
+
+
+
+
 module.exports = sequelize;

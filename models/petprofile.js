@@ -15,9 +15,6 @@ module.exports = (sequelize, DataTypes) => {
      breed: {
          type: DataTypes.STRING,
          allowNull: false
-     },
-     ownerID: {
-        type: DataTypes.INTEGER
      }
 
     })

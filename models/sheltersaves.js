@@ -1,26 +1,25 @@
 module.exports = (sequelize, DataTypes) => {
-    const User = sequelize.define('user', {
-        firstName: {
+    const shelterSave = sequelize.define("dogs", {
+        name: {
             type: DataTypes.STRING,
             allowNull: false
         },
-        lastName: {
+        age: {
             type: DataTypes.STRING,
             allowNull: false
         },
-        email: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        unique: true
-    },
-        password: {
+        gender: {
             type: DataTypes.STRING,
             allowNull: false
         },
-        isAdmin: {
+        description: {
             type: DataTypes.BOOLEAN,
+            allowNull: false
+        },
+        image: {
+            type: DataTypes.STRING,
             allowNull: true
         }
     })
-    return User;
+    return shelterSave;
 }
