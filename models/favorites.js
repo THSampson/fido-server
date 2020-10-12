@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-    const shelterSave = sequelize.define("dogs", {
+    const Favorites = sequelize.define("favorite", {
         name: {
             type: DataTypes.STRING,
             allowNull: false
@@ -13,13 +13,18 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false
         },
         description: {
-            type: DataTypes.BOOLEAN,
+            type: DataTypes.STRING,
             allowNull: false
         },
-        image: {
+        img: {
             type: DataTypes.STRING,
-            allowNull: true
-        }
+            allowNull: false
+        },
+        url: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        
     })
-    return shelterSave;
+    return Favorites;
 }

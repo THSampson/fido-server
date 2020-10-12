@@ -3,6 +3,7 @@ const User = require('../db').import('../models/user');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
+//Create User
 router.post('/register', (req, res) => {
     User.create({
         firstName: req.body.fName,
@@ -23,6 +24,7 @@ router.post('/register', (req, res) => {
     )
 })
 
+//Login 
 router.post('/login', (req, res) => {
     User.findOne({where: {email: req.body.email}})
     .then(
@@ -47,6 +49,7 @@ router.post('/login', (req, res) => {
     )
 })
 
+//Update User
 router.put('/:id', (req, res) => {
     User.update(
         req.body, {where:
@@ -56,6 +59,8 @@ router.put('/:id', (req, res) => {
     .catch(() => res.status(500).json({error: er}))
 });
 
+
+//Delete User
 router.delete('/:id', (req, res) => {
     User.destroy(
         {where: {id: req.params.id}}

@@ -1,7 +1,6 @@
 const Sequelize = require('sequelize');
-const sequelize = new Sequelize(process.env.NAME, 'postgres', process.env.PASS, {
-    host: 'localhost',
-    dialect: 'postgres'
+const sequelize = new Sequelize(process.env.DATABASE_URL, {
+      dialect: 'postgres'
 });
 
 sequelize.authenticate()
@@ -9,14 +8,13 @@ sequelize.authenticate()
 .catch(err => console.log(err));
 
 User = sequelize.import('./models/user');
-Pet = sequelize.import('./models/petprofile');
-Fido = sequelize.import('./models/fido');
+Profile = sequelize.import('./models/userprofile');
+Favorites = sequelize.import('./models/favorites')
 
-Pet.belongsTo(User);
-User.hasMany(Pet);
-Fido.belongsTo(User);
-User.hasOne(Fido);
-
+Profile.belongsTo(User);
+User.hasOne(Profile);
+Favorites.belongsTo(Profile)
+Profile.hasMany(Favorites)
 
 
 
