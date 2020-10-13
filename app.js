@@ -13,7 +13,7 @@ let favorites = require('./controllers/favcontroller');
 
 
 
-sequelize.sync({force: true});
+sequelize.sync();
 
 
 

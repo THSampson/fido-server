@@ -9,7 +9,7 @@ router.post('/register', (req, res) => {
         firstName: req.body.fName,
         lastName: req.body.lName,
         email: req.body.email,
-        password: bcrypt.hashSync(req.body.password, 10)
+        password: bcrypt.hashSync(req.body.password, 10),
     })
     .then(
         createSucess = (user) => {

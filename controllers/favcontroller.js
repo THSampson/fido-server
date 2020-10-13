@@ -8,10 +8,11 @@ global.Headers = fetch.Headers;
 //View all favorites
 
 router.get('/', validateSession, (req, res) => {
-    let userID = req.user.id
-    Fav.findAll({
-        where: {ownerID: userID},
-    })
+    Fav.findAll(
+        {where: 
+            {id: user.id}
+            }
+    )
 
 .then(() => res.status(200).json())
 .catch(err => res.status(500).json({error:err}))
@@ -27,7 +28,6 @@ const newFav = {
     description: req.body.describe, 
     img: req.body.img,
     url: req.body.url,
-    comment: '',
     
 }
 Fav.create(newFav)
