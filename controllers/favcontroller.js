@@ -14,13 +14,13 @@ router.get('/', validateSession, (req, res) => {
             }
     )
 
-.then(() => res.status(200).json())
+.then((fav) => res.status(200).json(fav))
 .catch(err => res.status(500).json({error:err}))
 })
 
 //Add new favorite
 
-router.post('/new', (req, res) => {
+router.post('/new', validateSession, (req, res) => {
 const newFav = {
     name: req.body.name,
     age: req.body.age,
@@ -31,7 +31,7 @@ const newFav = {
     
 }
 Fav.create(newFav)
-.then(() => res.status(200).json({message: 'New Friend Added to Favorites!'}))
+.then((fav) => res.status(200).json({message: 'New Friend Added to Favorites!', fav}))
 .catch(err => res.status(500).json({error:err}))
 })
 

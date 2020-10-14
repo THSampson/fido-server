@@ -15,17 +15,17 @@ router.post('/create', validateSession, (req, res) => {
       userId: req.user.id
     }
     Profile.create(userFromRequest)
-    .then(() => res.status(200).json({message: "Profile Successfully Created"}))
+    .then((profile) => res.status(200).json({message: "Profile Successfully Created", profile}))
     .catch(err => res.status(500).json({error: err}))
 })
 
-//Get Profile
-router.get('/', (req, res) => { 
-    Profile.findAll(
+// Get Profile
+router.get('/', validateSession, (req, res) => { 
+    Profile.findOne(
         {where: 
-            {id: req.params.id}
+            {userId: req.user.id}
                 })
-.then(() => res.status(200).json())
+.then((profile) => res.status(200).json(profile))
 .catch(err => res.status(500).json({error:err}))
 })
 

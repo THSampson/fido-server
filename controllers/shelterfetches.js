@@ -1,14 +1,13 @@
 const express = require("express");
 const router = express.Router();
 const fetch = require("node-fetch");
-const validateSession = require("../middleware/sessionToken");
 global.Headers = fetch.Headers;
 
 const key = "hAfvRltAWWVsv1pPrOe5pWIr0RQkhEE4Zv5itgDES82WjWNAAO";
 const secret = "ub15uklTB78jt76EhFOqV4g37BO8jzsQ28eVkhs6";
 
 let Data;
-let intake;
+
 //Fetch OAuth token
 fetch("https://api.petfinder.com/v2/oauth2/token", {
   method: "POST",
