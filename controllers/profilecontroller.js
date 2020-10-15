@@ -4,23 +4,21 @@ const Profile = require('../db').import('../models/userprofile');
 const validateSession = require('../middleware/sessionToken');
 
 //Create Profile
-router.post('/create', validateSession, (req, res) => {
-    const userFromRequest = {
+router.post('/create', (req, res) => {
+    const profileInfo = {
       name: req.body.name,
       age: req.body.age,
       hasKids: req.body.kids,
       otherPets: req.body.pets,
-      img: req.body.img,
       location: req.body.location,
-      userId: req.user.id
     }
-    Profile.create(userFromRequest)
+    Profile.create(profileInfo)
     .then((profile) => res.status(200).json({message: "Profile Successfully Created", profile}))
     .catch(err => res.status(500).json({error: err}))
 })
 
 // Get Profile
-router.get('/', validateSession, (req, res) => { 
+router.get('/',  (req, res) => { 
     Profile.findOne(
         {where: 
             {userId: req.user.id}
@@ -30,7 +28,7 @@ router.get('/', validateSession, (req, res) => {
 })
 
 //Update Profile
-router.put('/:id', validateSession, (req, res) => {
+router.put('/:id',  (req, res) => {
     Profile.update(
         req.body, {where: 
     {id: req.params.id}
@@ -40,7 +38,7 @@ router.put('/:id', validateSession, (req, res) => {
 })
 
 //Delete Profile
-router.delete('/:id', validateSession, (req, res) => {
+router.delete('/:id', (req, res) => {
     Profile.destroy(
         {where: {id: req.params.id}}
     )

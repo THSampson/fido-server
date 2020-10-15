@@ -7,10 +7,11 @@ global.Headers = fetch.Headers;
 
 //View all favorites
 
-router.get('/', validateSession, (req, res) => {
+router.get('/', (req, res) => {
+    let userid = req.user.id
     Fav.findAll(
         {where: 
-            {id: user.id}
+            {userId: userid}
             }
     )
 
@@ -20,23 +21,19 @@ router.get('/', validateSession, (req, res) => {
 
 //Add new favorite
 
-router.post('/new', validateSession, (req, res) => {
+router.post('/new', (req, res) => {
 const newFav = {
     name: req.body.name,
-    age: req.body.age,
-    gender: req.body.gender,
-    description: req.body.describe, 
-    img: req.body.img,
-    url: req.body.url,
-    
-}
+    type: req.body.type,
+    comment: req.body.comment
+    }
 Fav.create(newFav)
 .then((fav) => res.status(200).json({message: 'New Friend Added to Favorites!', fav}))
 .catch(err => res.status(500).json({error:err}))
 })
 
 //Delete favorite
-router.delete('/:id', validateSession, (req, res) => {
+router.delete('/:id',  (req, res) => {
     Fav.destroy(
         {where: {id: req.params.id}}
     )
@@ -46,9 +43,9 @@ router.delete('/:id', validateSession, (req, res) => {
 
 //Update comment on favorite
 
-router.put('/:id', validateSession, (req, res) => {
+router.put('/:id', (req, res) => {
     Fav.update(
-        req.body.comment, 
+        req.body, 
         {where: 
         {id: req.params.id}
         })

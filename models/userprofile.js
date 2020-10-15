@@ -16,14 +16,12 @@ module.exports = (sequelize, DataTypes) => {
          type: DataTypes.BOOLEAN,
          allowNull: false
      },
-      img: {
-         type: DataTypes.STRING
-
-     },
+      
      location: {
          type: DataTypes.STRING,
          allowNull: false
      },
+
      })
 return Profile;
 };

@@ -15,8 +15,6 @@ let favorites = require('./controllers/favcontroller');
 
 sequelize.sync();
 
-
-
 app.use(require('./middleware/headers'));
 app.use(express.json());
 

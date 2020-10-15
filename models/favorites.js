@@ -4,26 +4,15 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: false
         },
-        age: {
+         type: {
             type: DataTypes.STRING,
             allowNull: false
         },
-        gender: {
+        comment: {
             type: DataTypes.STRING,
             allowNull: false
         },
-        description: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-        img: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-        url: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
+        
     })
     return Favorites;
 }

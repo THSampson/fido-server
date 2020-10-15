@@ -13,8 +13,8 @@ Favorites = sequelize.import('./models/favorites')
 
 Profile.belongsTo(User);
 User.hasOne(Profile);
-Favorites.belongsTo(Profile)
-Profile.hasMany(Favorites)
+Favorites.belongsTo(User)
+User.hasMany(Favorites)
 
 
 
