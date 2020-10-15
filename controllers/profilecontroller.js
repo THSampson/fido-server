@@ -19,9 +19,10 @@ router.post('/create', (req, res) => {
 
 // Get Profile
 router.get('/',  (req, res) => { 
+    let userid = req.user.id;
     Profile.findOne(
         {where: 
-            {userId: req.user.id}
+            {userId: userid}
                 })
 .then((profile) => res.status(200).json(profile))
 .catch(err => res.status(500).json({error:err}))

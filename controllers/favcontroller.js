@@ -8,10 +8,9 @@ global.Headers = fetch.Headers;
 //View all favorites
 
 router.get('/', (req, res) => {
-    let userid = req.user.id
-    Fav.findAll(
+        Fav.findAll(
         {where: 
-            {userId: userid}
+            {userId: id.params.id}
             }
     )
 
