@@ -4,13 +4,14 @@ const Profile = require('../db').import('../models/userprofile');
 const validateSession = require('../middleware/sessionToken');
 
 //Create Profile
-router.post('/create', (req, res) => {
+router.post('/create', validateSession, (req, res) => {
     const profileInfo = {
       name: req.body.name,
       age: req.body.age,
       hasKids: req.body.kids,
       otherPets: req.body.pets,
       location: req.body.location,
+      userId: req.user.id
     }
     Profile.create(profileInfo)
     .then((profile) => res.status(200).json({message: "Profile Successfully Created", profile}))
@@ -18,7 +19,7 @@ router.post('/create', (req, res) => {
 })
 
 // Get Profile
-router.get('/',  (req, res) => { 
+router.get('/', validateSession, (req, res) => { 
     let userid = req.user.id;
     Profile.findOne(
         {where: 
@@ -29,7 +30,7 @@ router.get('/',  (req, res) => {
 })
 
 //Update Profile
-router.put('/:id',  (req, res) => {
+router.put('/:id', validateSession, (req, res) => {
     Profile.update(
         req.body, {where: 
     {id: req.params.id}
@@ -39,7 +40,7 @@ router.put('/:id',  (req, res) => {
 })
 
 //Delete Profile
-router.delete('/:id', (req, res) => {
+router.delete('/:id', validateSession, (req, res) => {
     Profile.destroy(
         {where: {id: req.params.id}}
     )
