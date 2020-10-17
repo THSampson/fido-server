@@ -10,7 +10,7 @@ global.Headers = fetch.Headers;
 router.get('/', validateSession, (req, res) => {
         Fav.findAll(
         {where: 
-            {userId: id.params.id}
+            {userId: req.user.id}
             }
     )
 

@@ -9,7 +9,7 @@ const validateSession = (req, res, next) => {
         jwt.verify(token, process.env.JWT_SECRET, (err, decodeToken) => {
             if(!err && decodeToken) {
                 User.findOne({where: {id: decodeToken.id}})
-                .then(user => {
+                .then((user) => {
                     if(!user) throw "err";
                     req.user = user;
                     return next();
